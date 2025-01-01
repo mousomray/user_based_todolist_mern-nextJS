@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export function middleware(req) {
   const token = req.cookies.get('token');
   const url = req.nextUrl.clone();
-  const protectedRoutes = ['/addtodo', '/todolist'];
+  const protectedRoutes = ['/addtodo', '/todolist']; // These are private routing
   if (protectedRoutes.includes(url.pathname)) {
     if (!token) {
       url.pathname = '/login';
@@ -14,5 +14,5 @@ export function middleware(req) {
   return NextResponse.next();
 }
 export const config = {
-  matcher: ['/addtodo', '/todolist'],
+  matcher: ['/addtodo', '/todolist'], // These are private routing
 };
